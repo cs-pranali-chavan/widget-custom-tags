@@ -1,0 +1,24 @@
+{
+    "name": "customTags",
+    "title": "Custom Tags",
+    "subTitle": "customTags",
+    "version": "1.0.0",
+    "published_date": 1742561104,
+    "releaseNotes": "unavailable",
+    "metadata": {
+        "description": "customTags",
+        "pages": [
+            "Dashboard",
+            "View Panel"
+        ],
+        "certified": "No",
+        "publisher": null,
+        "compatibility": [
+            "7.6.2"
+        ],
+        "category": [
+            "Threat Intelligence"
+        ]
+    },
+    "development": false
+}

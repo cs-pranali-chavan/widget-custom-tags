@@ -1,0 +1,23 @@
+<!-- Copyright start
+  Copyright (C) 2008 - 2025 Fortinet Inc.
+  All rights reserved.
+  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+  Copyright end -->
+  <div class="widget widget-container chart">
+    <div class="display-flex-space-between margin-chart">
+    </div>
+    <div>
+        <div class="padding-lg">
+            <div>
+                <div>
+                  <span>Outbreak</span>
+                  <span class="tags-style text-capitalize" data-ng-click="navigateToOutbreak(tags.id,tags.module)" data-ng-repeat="tags in customTags track by $index"
+                    ng-style="{'background-color' : tags.color, 'color': tags.textColor}">
+                    <span
+                      title="{{ tags.key }}">{{ tags.key }}</span>
+                  </span>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
