@@ -12,7 +12,7 @@ Copyright end */
 
     function customTags100Ctrl($scope, widgetUtilityService, $state, appModulesService) {
       $scope.outbreakTags = [{
-        key: 'Invanti Cloud Servic Appliance',
+        key: 'Ivanti Connect Secure and Policy Secure Attack',
         structure: 'link',
         color: 'defaultColor',
         id: '0b5fdc1e-0403-46f7-b311-1014255828c9',
@@ -20,19 +20,23 @@ Copyright end */
       }];
       
       $scope.customTags = [{
-        key: 'CVE-2024-8190',
+        key: 'CVE-2023-46805',
         structure: 'tags',
         color: 'defaultColor'
       },{
-        key: 'CVE-2024-8963',
+        key: 'CVE-2024-21887',
         structure: 'tags',
         color: 'defaultColor'
       },{
-        key: 'CVE-2024-9380',
+        key: 'CVE-2024-21888',
         structure: 'tags',
         color: 'defaultColor'
       },{
-        key: 'CVE-2024-9379',
+        key: 'CVE-2024-21893',
+        structure: 'tags',
+        color: 'defaultColor'
+      },{
+        key: 'CVE-2024-22024',
         structure: 'tags',
         color: 'defaultColor'
       }];
