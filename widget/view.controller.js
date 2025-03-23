@@ -1,8 +1,7 @@
 /* Copyright start
-  Copyright (C) 2008 - 2025 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end */
+    MIT License
+    Copyright (c) 2025 Fortinet Inc
+Copyright end */
 'use strict';
 (function () {
     angular
@@ -12,13 +11,32 @@
     customTags100Ctrl.$inject = ['$scope', 'widgetUtilityService', '$state', 'appModulesService'];
 
     function customTags100Ctrl($scope, widgetUtilityService, $state, appModulesService) {
-      $scope.customTags = [{
+      $scope.outbreakTags = [{
         key: 'Invanti Cloud Servic Appliance',
-        structure: 'tags',
+        structure: 'link',
         color: 'defaultColor',
         id: '0b5fdc1e-0403-46f7-b311-1014255828c9',
         module: 'outbreak_alerts'
       }];
+      
+      $scope.customTags = [{
+        key: 'CVE-2024-8190',
+        structure: 'tags',
+        color: 'defaultColor'
+      },{
+        key: 'CVE-2024-8963',
+        structure: 'tags',
+        color: 'defaultColor'
+      },{
+        key: 'CVE-2024-9380',
+        structure: 'tags',
+        color: 'defaultColor'
+      },{
+        key: 'CVE-2024-9379',
+        structure: 'tags',
+        color: 'defaultColor'
+      }];
+
       $scope.navigateToOutbreak = navigateToOutbreak;
 
       function navigateToOutbreak(_id, module){
