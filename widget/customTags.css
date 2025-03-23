@@ -1,0 +1,135 @@
+/* Copyright start 
+Copyright (C) 2008 - 2025 Fortinet Inc.
+All rights reserved.
+FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+Copyright end */
+
+.tags-style {
+  border-radius: 2px !important;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.red {
+  background-color: red;
+}
+
+.defaultColor {
+  background-color: #181821;
+}
+
+.titleTag {
+  border-bottom: 1px solid #000;
+}
+
+.flag {
+  width: 30px;
+  height: auto;
+  margin: 0px 10px;
+}
+
+.searchContainer {
+  max-width: 100%;
+}
+
+.marginInline {
+  margin-inline: auto;
+}
+
+.searchBackground {
+  background-color: #000;
+}
+
+.ioc-widget row {
+  border-bottom: '1px solid #000'
+}
+
+.card {
+  width: 100px;
+  height: 70px;
+  align-content: center
+}
+
+.ioc-search-widgets {
+  border-bottom: 2px solid #000;
+}
+
+.ioc-search-widgets .widget.widget-container {
+  border-bottom: none !important;
+}
+
+.ioc-widget ui-grid-cell-contents {
+  font-size: 0.9em;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: start; /* Equal space between the items */
+  padding: 10px;
+}
+
+.flex-item {
+  padding: 10px;
+  margin: 0 10px; /* Adds space around items */
+  width: 130px;
+  height: auto;
+}
+
+.rowDivider{
+  border-right: 1px solid #000;
+}
+
+.topBorder{
+  border-top: 1px solid #000;
+}
+
+.dark .steel{
+  color: #FFF;
+}
+
+.light{
+  color: #000;
+}
+
+.light .searchBackground {
+  background-color: #e8e8ea;
+}
+
+.light 
+.rowDivider{
+  border-right: 1px solid #cfd8dd;
+}
+
+.light
+.ioc-search-widgets {
+  border-bottom: 2px solid #cfd8dd
+}
+
+.light
+.topBorder{
+  border-top: 1px solid #cfd8dd;
+}
+
+.light .defaultColor {
+  background-color: #e8e8ea;
+}
+
+.grid-summary .ui-grid-cell-content .indicatorClass{
+  color: #1397a8 !important;
+}
+
+textarea.invalid {
+  border: 1px solid red;
+  box-shadow: 0 0 10px 2px rgba(255, 0, 0, 0.75);
+}
+
+textarea:focus {
+  border: 2px solid rgba(200, 200, 213, 0.811);
+
+}
