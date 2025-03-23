@@ -1,23 +1,32 @@
 <!-- Copyright start
-  Copyright (C) 2008 - 2025 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end -->
-  <div class="widget widget-container chart">
-    <div class="display-flex-space-between margin-chart">
-    </div>
-    <div>
-        <div class="padding-lg">
-            <div>
-                <div>
-                  <span>Outbreak</span>
-                  <span class="tags-style text-capitalize" data-ng-click="navigateToOutbreak(tags.id,tags.module)" data-ng-repeat="tags in customTags track by $index"
+    MIT License
+    Copyright (c) 2025 Fortinet Inc
+Copyright end -->
+<div class="widget widget-container chart">
+  <div class="display-flex-space-between margin-chart">
+  </div>
+  <div>
+    <div class="padding-left-lg padding-bottom-lg padding-top-lg">
+      <div>
+        <div>
+          <span>Outbreak </span>
+          <span class="padding-left-md">
+                  <a class="text-capitalize font-09em" data-ng-click="navigateToOutbreak(tags.id,tags.module)" data-ng-repeat="tags in outbreakTags track by $index"
                     ng-style="{'background-color' : tags.color, 'color': tags.textColor}">
-                    <span
-                      title="{{ tags.key }}">{{ tags.key }}</span>
-                  </span>
-                </div>
-              </div>
+                    <span title="{{ tags.key }}">{{ tags.key }}</span>
+          </a>
+          </span>
         </div>
+        <div class="padding-top-lg">
+          <span>CVE </span>
+          <span class="padding-left-md">
+                  <span class="tags-style text-capitalize" data-ng-repeat="tags in customTags track by $index"
+                    ng-style="{'background-color' : tags.color, 'color': tags.textColor}">
+                    <span title="{{ tags.key }}">{{ tags.key }}</span>
+          </span>
+          </span>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
