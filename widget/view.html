@@ -7,24 +7,37 @@ Copyright end -->
   </div>
   <div>
     <div class="padding-left-lg padding-bottom-lg padding-top-lg">
+      <div data-ng-if="processing">
+        <cs-spinner></cs-spinner>
+      </div>
       <div>
-        <div>
-          <span>Outbreak </span>
-          <span class="padding-left-md">
-                  <a class="text-capitalize font-09em" data-ng-click="navigateToOutbreak(tags.id,tags.module)" data-ng-repeat="tags in outbreakTags track by $index"
-                    ng-style="{'background-color' : tags.color, 'color': tags.textColor}">
-                    <span title="{{ tags.key }}">{{ tags.key }}</span>
-          </a>
+        <div data-ng-if="config.structureSelected==='URL'" class="display-inline-flex">
+          <div class="text-uppercase">{{tagsKey}} </div>
+          <div class="padding-left-md">
+            <ol>
+              <li data-ng-repeat="tags in customTags track by $index">
+                <a class="text-capitalize font-09em" data-ng-click="navigateToOutbreak(tags.id)">
+                  <span title="{{ tags.key }}">{{ tags.key }}</span>
+                </a>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="padding-top-lg display-inline-flex" data-ng-if="config.structureSelected==='Tag'">
+          <div class="text-uppercase">{{tagsKey}} </div>
+          <div class="padding-left-md">
+                  <span class="tags-style text-capitalize" data-ng-repeat="tags in customTags track by $index">
+                    <span title="{{ tags }}">{{ tags }}</span>
           </span>
         </div>
-        <div class="padding-top-lg">
-          <span>CVE </span>
-          <span class="padding-left-md">
-                  <span class="tags-style text-capitalize" data-ng-repeat="tags in customTags track by $index"
-                    ng-style="{'background-color' : tags.color, 'color': tags.textColor}">
-                    <span title="{{ tags.key }}">{{ tags.key }}</span>
-          </span>
-          </span>
+        </div>
+        <div ng-if="structure === 'Card'" class="flex-container"> 
+          <div class="flex-item text-capitalize truncate defaultColor font-09em border-radius-10" data-ng-repeat="tags in customTags track by $index"
+            data-ng-class="{'card':structure === 'card'}" title="{{ tags.key }}">
+            <div class="padding-bottom-sm"><img src={{tags.icon}}></img></div>
+            <div>{{ tags.count }} </div>
+            <span title="{{ tags.key }}">{{ tags.key }}</span>
+          </div>
         </div>
       </div>
     </div>
