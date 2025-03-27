@@ -8,9 +8,9 @@ Copyright end */
       .module('cybersponse')
       .controller('customTags100Ctrl', customTags100Ctrl);
 
-    customTags100Ctrl.$inject = ['$scope', 'widgetUtilityService', '$state', 'appModulesService', 'customTagsService', 'modelMetadatasService'];
+    customTags100Ctrl.$inject = ['$scope', 'widgetUtilityService', '$state', 'appModulesService', 'customTagsService', 'modelMetadatasService', 'localStorageService'];
 
-    function customTags100Ctrl($scope, widgetUtilityService, $state, appModulesService, customTagsService, modelMetadatasService) {
+    function customTags100Ctrl($scope, widgetUtilityService, $state, appModulesService, customTagsService, modelMetadatasService, localStorageService) {
       
       $scope.noData = false;
       
@@ -19,6 +19,8 @@ Copyright end */
       $scope.navigateToOutbreak = navigateToOutbreak;
       $scope.pageState = $state;
       $scope.processing = true;
+      $scope.tooltipErrorMsg = '';
+
 
       function navigateToOutbreak(_id){
         let module = $scope.config.navigationModule;
@@ -67,26 +69,26 @@ Copyright end */
         let _connectorAction = moduleMetaData.dataSource.operation;
         let payload = { 'indicator': $scope.indicator, 'fields': $scope.config.resourceField };
         customTagsService.executeAction(_connectorName, _connectorAction, payload).then(function(response){
-          $scope.tagsKey = $scope.config.resourceField;
-          if (response.data[$scope.tagsKey].length > 0) {
+          $scope.tagsKey = getDisplayKey($scope.config.resourceField);
+          if (response.data[$scope.config.resourceField].length > 0) {
             $scope.noData = false;
-            $scope.processing = false;
             $scope.tooltipErrorMsg = '';
             if ($scope.config.structureSelected !== 'URL') {
-              $scope.customTags = response.data[$scope.tagsKey];
+              $scope.customTags = response.data[$scope.config.resourceField];
             }
             else {
-              changeURLTagsSchema(response.data[$scope.tagsKey]);
+              changeURLTagsSchema(response.data[$scope.config.resourceField]);
             }
           }
           else{
             $scope.noData = true;
           }
         },function(error){
-          $scope.processing = false;
           $scope.noData = true;
           $scope.tooltipErrorMsg = 'Error while fetching data. Please check connector logs for more info.';
-        });
+        }).finally(function(){
+          $scope.processing = false;
+        });;
       }
   
       function changeURLTagsSchema(_tagsData) {
@@ -99,14 +101,27 @@ Copyright end */
                 module: $scope.config.navigationModule
               })
             }
-            else { //if API response has no data 
-              $scope.processing = false;
-              $scope.noData = true;
+            else { //if API response has no data push only key to display 
+              $scope.customTags.push({
+                key: tags
+              })
             }
           }, function (error) {
             console.log(error);
+          }).finally(function(){
+            $scope.processing = false;
           });
         });
+      }
+
+      function getDisplayKey(_key){
+        let _attributes =  loadModuleFromLocalStorage().attributes;
+        return _attributes.find(i=> i.name === _key).descriptions.singular
+      }
+
+      function loadModuleFromLocalStorage() {
+        const _param = 'metadata.' + $scope.config.resourceModule;
+        return localStorageService.get(_param);
       }
 
       function init() {

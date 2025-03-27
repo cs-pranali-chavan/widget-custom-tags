@@ -49,7 +49,7 @@ Copyright end */
               }
             });
           });
-          if ($scope.config.resource) {
+          if ($scope.config.resourceModule) {
             $scope.loadAttributes();
           }
         }
