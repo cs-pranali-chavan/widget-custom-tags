@@ -10,8 +10,7 @@ Copyright end */
 
     customTags100Ctrl.$inject = ['$scope', 'widgetUtilityService', '$state', 'appModulesService', 'customTagsService', 'modelMetadatasService', 'localStorageService'];
 
-    function customTags100Ctrl($scope, widgetUtilityService, $state, appModulesService, customTagsService, modelMetadatasService, localStorageService) {
-      
+    function customTags100Ctrl($scope, widgetUtilityService, $state, appModulesService, customTagsService, modelMetadatasService, localStorageService) {  
       $scope.noData = false;
       
       $scope.customTags = [];
