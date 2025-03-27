@@ -13,7 +13,6 @@ Copyright end */
     function editCustomTags100Ctrl($scope, $uibModalInstance, config, widgetUtilityService, $timeout, appModulesService, Entity) {
         $scope.cancel = cancel;
         $scope.save = save;
-        $scope.changeStructure = changeStructure;
         $scope.config = config;
         $scope.structureSupported = ['Card','Tag','URL'];
 
