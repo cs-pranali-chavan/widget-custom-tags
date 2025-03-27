@@ -8,38 +8,21 @@ Copyright end */
       .module('cybersponse')
       .controller('customTags100Ctrl', customTags100Ctrl);
 
-    customTags100Ctrl.$inject = ['$scope', 'widgetUtilityService', '$state', 'appModulesService'];
+    customTags100Ctrl.$inject = ['$scope', 'widgetUtilityService', '$state', 'appModulesService', 'customTagsService', 'modelMetadatasService', 'localStorageService'];
 
-    function customTags100Ctrl($scope, widgetUtilityService, $state, appModulesService) {
-      $scope.outbreakTags = [{
-        key: 'Ivanti Cloud Services Appliance Zero-Day Attack',
-        structure: 'link',
-        color: 'defaultColor',
-        id: 'b2a020e0-c6fd-48b0-afe8-ae371161fe15',
-        module: 'outbreak_alerts'
-      }];
+    function customTags100Ctrl($scope, widgetUtilityService, $state, appModulesService, customTagsService, modelMetadatasService, localStorageService) {  
+      $scope.noData = false;
       
-      $scope.customTags = [{
-        key: 'CVE-2024-8190',
-        structure: 'tags',
-        color: 'defaultColor'
-      },{
-        key: 'CVE-2024-8963',
-        structure: 'tags',
-        color: 'defaultColor'
-      },{
-        key: 'CVE-2024-9380',
-        structure: 'tags',
-        color: 'defaultColor'
-      },{
-        key: 'CVE-2024-9379',
-        structure: 'tags',
-        color: 'defaultColor'
-      }];
+      $scope.customTags = [];
 
       $scope.navigateToOutbreak = navigateToOutbreak;
+      $scope.pageState = $state;
+      $scope.processing = true;
+      $scope.tooltipErrorMsg = '';
 
-      function navigateToOutbreak(_id, module){
+
+      function navigateToOutbreak(_id){
+        let module = $scope.config.navigationModule;
         var viewParams = {
           indicator: _id
         };
@@ -60,14 +43,84 @@ Copyright end */
           $state.go(state, params);
         }
       }
-
-
+  
       function _handleTranslations() {
         widgetUtilityService.checkTranslationMode($scope.$parent.model.type).then(function () {
           $scope.viewWidgetVars = {
             // Create your translating static string variables here
           };
         });
+        checkCurrentPage($scope.pageState);
+      }
+
+
+      function checkCurrentPage(state){
+        if (state.current.name.includes('viewPanel.modulesDetail')) {
+          let params = $scope.pageState.current.params;
+          $scope.indicator = params.id;
+          fetchTagsData();
+        }
+      }
+
+      function fetchTagsData(){ 
+        let moduleMetaData = modelMetadatasService.getMetadataByModuleType($scope.config.resourceModule);
+        let _connectorName = moduleMetaData.dataSource.connector;
+        let _connectorAction = moduleMetaData.dataSource.operation;
+        let payload = { 'indicator': $scope.indicator, 'fields': $scope.config.resourceField };
+        customTagsService.executeAction(_connectorName, _connectorAction, payload).then(function(response){
+          $scope.tagsKey = getDisplayKey($scope.config.resourceField);
+          if (response.data[$scope.config.resourceField].length > 0) {
+            $scope.noData = false;
+            $scope.tooltipErrorMsg = '';
+            if ($scope.config.structureSelected !== 'URL') {
+              $scope.customTags = response.data[$scope.config.resourceField];
+            }
+            else {
+              changeURLTagsSchema(response.data[$scope.config.resourceField]);
+            }
+          }
+          else{
+            $scope.noData = true;
+          }
+        },function(error){
+          $scope.noData = true;
+          $scope.tooltipErrorMsg = 'Error while fetching data. Please check connector logs for more info.';
+        }).finally(function(){
+          $scope.processing = false;
+        });;
+      }
+  
+      function changeURLTagsSchema(_tagsData) {
+        _tagsData.forEach(tags => {
+          customTagsService.getTagsQuery(tags, $scope.config.navigationModule).then(function (response) {
+            if (response && response.data['hydra:member'] && response.data['hydra:member'].length > 0) {
+              $scope.customTags.push({
+                key: tags,
+                id: response.data['hydra:member'][0].uuid,
+                module: $scope.config.navigationModule
+              })
+            }
+            else { //if API response has no data push only key to display 
+              $scope.customTags.push({
+                key: tags
+              })
+            }
+          }, function (error) {
+            console.log(error);
+          }).finally(function(){
+            $scope.processing = false;
+          });
+        });
+      }
+
+      function getDisplayKey(_key){
+        let _attributes =  loadModuleFromLocalStorage().attributes;
+        return _attributes.find(i=> i.name === _key).descriptions.singular
+      }
+
+      function loadModuleFromLocalStorage() {
+        const _param = 'metadata.' + $scope.config.resourceModule;
+        return localStorageService.get(_param);
       }
 
       function init() {
