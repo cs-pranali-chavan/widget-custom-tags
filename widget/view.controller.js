@@ -69,7 +69,7 @@ Copyright end */
         let payload = { 'indicator': $scope.indicator, 'fields': $scope.config.resourceField };
         customTagsService.executeAction(_connectorName, _connectorAction, payload).then(function(response){
           $scope.tagsKey = getDisplayKey($scope.config.resourceField);
-          if (response.data[$scope.config.resourceField].length > 0) {
+          if (response.data[$scope.config.resourceField] && response.data[$scope.config.resourceField].length > 0) {
             $scope.noData = false;
             $scope.tooltipErrorMsg = '';
             if ($scope.config.structureSelected !== 'URL') {
