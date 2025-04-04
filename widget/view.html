@@ -24,7 +24,7 @@ Copyright end -->
               <li data-ng-repeat="tags in customTags track by $index">
                 <a class="text-capitalize font-09em" data-ng-if="tags.id" data-ng-click="navigateToOutbreak(tags.id)">
                   <span title="{{ tags.key }}">{{ tags.key }}</span></a>
-                <span class="text-capitalize font-09em active-color disable-button" data-ng-if="!tags.id">
+                <span class="text-capitalize font-09em active-color" data-ng-if="!tags.id">
                   <span title="{{ tags.key }}">{{ tags.key }}</span>
                 </span>
               </li>
