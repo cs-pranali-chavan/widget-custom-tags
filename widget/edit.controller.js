@@ -14,6 +14,7 @@ Copyright end */
         $scope.cancel = cancel;
         $scope.save = save;
         $scope.config = config;
+        $scope.isConfigurable = false;
         $scope.structureSupported = ['Card','Tag','URL'];
 
         function _handleTranslations() {
@@ -23,6 +24,7 @@ Copyright end */
             widgetUtilityService.checkTranslationMode(widgetNameVersion).then(function () {
               $scope.viewWidgetVars = {
                 // Create your translating static string variables here
+                LABEL_NOT_CONFIGURABLE: widgetUtilityService.translate('customTags.LABEL_NOT_CONFIGURABLE')
               };
               loadModules();
             });
