@@ -7,3 +7,9 @@ Copyright end */
   border-radius: 2px !important;
   border-color: #2dccd3;
 }
+
+.overflowDiv{
+  height: 297px;
+  max-height: 297px;
+  overflow-y: scroll;
+}
