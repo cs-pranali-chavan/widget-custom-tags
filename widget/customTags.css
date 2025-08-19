@@ -13,3 +13,9 @@ Copyright end */
   max-height: 297px;
   overflow-y: scroll;
 }
+
+.btn-delete-layer{
+  position: relative;
+  top: 0px;
+  left: 395px;
+}
