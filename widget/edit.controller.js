@@ -16,7 +16,7 @@ Copyright end */
         $scope.includeMoreTags = includeMoreTags;
         $scope.removeLayer = removeLayer;
         $scope.config = config;
-        $scope.isConfigurable = true;
+        $scope.isConfigurable = false;
         $scope.structureSupported = ['Card','Tag','URL'];
         $scope.config.includedTagsStructure = [{
               structureSelected: '',
