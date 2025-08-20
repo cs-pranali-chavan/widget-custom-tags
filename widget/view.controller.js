@@ -67,7 +67,6 @@ Copyright end */
         let _connectorName = moduleMetaData.dataSource.connector;
         let _connectorAction = moduleMetaData.dataSource.operation;
         $scope.loadIncludedTagsData(_connectorName, _connectorAction).then(() => {
-          console.log('All tags loaded');
           $scope.includedTagsData.sort((a, b) => a.tagsKey - b.tagsKey);
         });
       }
@@ -89,9 +88,6 @@ Copyright end */
           const promise = customTagsService.executeAction(_connectorName, _connectorAction, payload)
             .then(function (response) {
               if (response.data[element.field] && response.data[element.field].length > 0) {
-                //$scope.noData = false;
-                //$scope.tooltipErrorMsg = '';
-
                 const tagData = {
                   structureSelected: element.structureSelected,
                   tagsKey : getDisplayKey(element.field),
