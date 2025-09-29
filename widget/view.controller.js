@@ -129,7 +129,11 @@ Copyright end */
         return deferred.promise;
       };
 
-  
+      //to keep URL and Tags sorted 
+      $scope.sortTags = function (item) {
+        return item.structureSelected === 'URL' ? Number.MAX_VALUE : item.structureSelected;
+      };
+
       function changeURLTagsSchema(_tagsData, navigationModule) {
         const deferred = $q.defer(); // Create a master deferred
         if (!Array.isArray(_tagsData)) return;
