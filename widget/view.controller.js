@@ -129,9 +129,9 @@ Copyright end */
         return deferred.promise;
       };
 
-      //to keep URL and Tags sorted 
+      //to keep URL and Tags sorted  - URL on top and rest sorted in 
       $scope.sortTags = function (item) {
-        return item.structureSelected === 'URL' ? Number.MAX_VALUE : item.structureSelected;
+        return item.structureSelected === 'URL' ? Number.MIN_VALUE : item.tagsKey;
       };
 
       function changeURLTagsSchema(_tagsData, navigationModule) {
