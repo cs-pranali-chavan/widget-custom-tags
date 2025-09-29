@@ -129,7 +129,7 @@ Copyright end */
         return deferred.promise;
       };
 
-      //to keep URL and Tags sorted  - URL on top and rest sorted in 
+      //to keep URL and Tags sorted  - URL on top and rest sorted in ascending order by tagskey 
       $scope.sortTags = function (item) {
         return item.structureSelected === 'URL' ? Number.MIN_VALUE : item.tagsKey;
       };
